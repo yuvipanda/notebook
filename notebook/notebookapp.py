@@ -1314,6 +1314,16 @@ class NotebookApp(JupyterApp):
          is not available.
          """))
 
+    event_data = Dict(
+        {},
+        help=_("""Add extra data that should be emitted by all events.
+
+        This is not configurable by users. Subclasses of this class 
+        should replace this trait.
+        """),
+        config=False,
+    )
+
     def parse_command_line(self, argv=None):
         super(NotebookApp, self).parse_command_line(argv)
 
@@ -1394,6 +1404,7 @@ class NotebookApp(JupyterApp):
         self.tornado_settings['cookie_options'] = self.cookie_options
         self.tornado_settings['get_secure_cookie_kwargs'] = self.get_secure_cookie_kwargs
         self.tornado_settings['token'] = self.token
+        self.tornado_settings['event_data'] = self.event_data
 
         # ensure default_url starts with base_url
         if not self.default_url.startswith(self.base_url):
