@@ -314,6 +314,11 @@ class IPythonHandler(AuthenticatedHandler):
         """Whether to set Access-Control-Allow-Credentials"""
         return self.settings.get('allow_credentials', False)
     
+    def get_event_data(self, new_event_data):
+        """Return global event data updated with new event data."""
+        new_event_data.update(self.settings.get('event_data'))
+        return new_event_data
+
     def set_default_headers(self):
         """Add CORS headers, if defined"""
         super(IPythonHandler, self).set_default_headers()

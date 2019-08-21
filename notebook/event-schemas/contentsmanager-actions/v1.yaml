@@ -77,3 +77,8 @@ properties:
     type: string
     description: |
         Source path of an operation when action is 'copy' or 'rename'
+
+  username: 
+    type: string
+    description: |
+        Name of the user whose server this action was performed on.
